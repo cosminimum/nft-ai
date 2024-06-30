@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "feeab618-24ba-4d0e-a462-266b789e6a8b",
+		"name": "NFT AI Project",
+		"description": "Postman collection for NFT AI project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1423040"
+	},
+	"item": [
+		{
+			"name": "Create Transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userAddress\": \"erd14d79f4egavyaf37flj28thrrlzu90n2nnlkjvk6drhcsea7888zsl64mk0\",\n    \"category\": \"entertainment\",\n    \"amount\": 20.5,\n    \"count\": 1,\n    \"timeOfDay\": \"morning\",\n    \"date\": \"2024-06-24T10:00:00.000Z\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[TEST] Process Transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userAddress\": \"erd14d79f4egavyaf37flj28thrrlzu90n2nnlkjvk6drhcsea7888zsl64mk0\",\n    \"category\": \"groceries\",\n    \"amount\": 20.5,\n    \"count\": 1,\n    \"timeOfDay\": \"morning\",\n    \"date\": \"2024-06-24T10:00:00.000Z\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/ai/process",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ai",
+						"process"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
