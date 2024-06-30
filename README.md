@@ -32,6 +32,8 @@ WALLET_PASSWORD=
 
 The application will be available at http://localhost:3000.
 
+Collection
+```https://devnet-explorer.multiversx.com/collections/AINFT-9acb34```
 
 Endpoints
 
