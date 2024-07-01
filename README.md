@@ -42,11 +42,3 @@ Create Transaction: POST /transactions
 
 Postman Collection
 You can use the provided Postman collection to test the endpoints. Import the collection from the following link:
-
-## Known Issues
-1. [transaction generation failed: invalid transaction lowerNonceInTx: true, veryHighNonceInTx: false] @ NFT Transfer
-
-What I tried:
-- Get current nonce (BigInt) and send
-- Get current nonce (BigInt), add +1, and send
-- Get current nonce (BigInt), add +2, and send

@@ -83,8 +83,14 @@ export class ChainService {
 
   this.sendAndAwait(transaction).then((result: ITransactionOnNetwork) => {
    if (result.isCompleted) {
+    const tokenNonce = result.contractResults.items[0].data.split('@')[2];
+    let nonceString = tokenNonce;
+    if (!tokenNonce.startsWith('0x')) {
+     nonceString = '0x' + tokenNonce;
+    }
+
     this.transferNFT({
-     nonce: transaction.nonce,
+     nonce: BigInt(nonceString),
      receiverAddress: userAddress
     })
    }
@@ -94,19 +100,19 @@ export class ChainService {
  async transferNFT(transferNFTDto: TransferNFTDto) {
   const factoryConfig = new TransactionsFactoryConfig({ chainID: this.configService.get("CHAIN_ID") });
   const factory = new TransferTransactionsFactory({ config: factoryConfig });
-  const nonce = BigInt(transferNFTDto.nonce) + BigInt(-1);
 
-  console.log(nonce);
   const transaction = factory.createTransactionForESDTTokenTransfer({
    sender: new Address(this.configService.get("OWNER_ADDRESS")),
    receiver: new Address(transferNFTDto.receiverAddress),
    tokenTransfers: [
     new TokenTransfer({
-     token: new Token({ identifier: this.TOKEN_IDENTIFIER, nonce: nonce }),
-     amount: 1n
+     token: new Token({ identifier: this.TOKEN_IDENTIFIER, nonce: transferNFTDto.nonce }),
+     amount: 1n,
     })
    ]
   });
+
+  transaction.nonce = BigInt(await this.getNonce());
 
   return this.sendAndAwait(transaction);
  }
